@@ -1,0 +1,27 @@
+.glyphicon-plus-sign {
+	font-size: 90px;
+	cursor: hand;
+}
+
+.folder-image {
+	width: 90px;
+	cursor: hand;
+}
+
+.col-sm-3 {
+	margin-top: 1em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.input-sm {
+	margin-top:18px;
+	margin-bottom: 8px;
+	font-size: 24px;
+	text-align: center !important;
+	background-color: transparent;
+}
+
+.active {
+	background-color: #EEF7FA;
+}

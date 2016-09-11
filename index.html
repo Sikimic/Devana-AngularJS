@@ -1,0 +1,54 @@
+<html ng-app="FileSystem">
+	<head>
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/app.css">
+		<script type="text/javascript" src="assets/js/angular.min.js"></script>
+		<script type="text/javascript" src="assets/js/modules.js"></script>
+	</head>
+	<body ng-controller="HomeController" context-menu="menuOptions">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand">
+						File System
+					</a>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="container" ng-controller="FileController" >
+			<div id="customAlert"></div>
+			<button class="btn btn-default" ng-click="leaveFolder()">Back</button>
+			<span> Root </span><span ng-repeat="folderName in folderNavigation track by $index">{{folderName}}</span>
+			<div class="row">
+				<div class="col-sm-3 text-center">
+					<span ng-click="addFolder()" class="glyphicon glyphicon-plus-sign" title="Create New Folder" aria-hidden="true"></span>
+					<h3> Create Folder </h3> 
+				</div>
+				<div class="col-sm-3 text-center">
+					<span ng-click="addFile()" class="glyphicon glyphicon-plus-sign" title="Create New folder" aria-hidden="true"></span>
+					<h3> Create File </h3> 
+				</div>
+				<div class="col-sm-3 text-center folder" ng-repeat="folder in currentFolder.myFiles" ng-class="{active : isSelected(folder)}" ng-click="setSelected(folder)" ng-show="isFolder(folder)">
+						<img ng-src="assets/img/{{folder.img}}" class="folder-image" ng-dblclick="enterFolder(folder)" context-menu="menuOptions" ng-right-click="setSelected(folder)" ng-model="folder">
+						<h3 ng-hide="folder.editing" ng-dblclick="editName(folder)">{{folder.name}}</h3>
+	        			<input type="text" class="form-control input-sm" ng-show="folder.editing" ng-model="folder.name" ng-blur="doneEditing(folder)" maxlength="20" auto-focus/>
+				</div>
+				<div class="col-sm-3 text-center folder" ng-repeat="file in currentFolder.myFiles" ng-class="{active : isSelected(file)}" ng-click="setSelected(file)" ng-show="isFile(file)">
+						<img ng-src="assets/img/{{file.img}}" class="folder-image" context-menu="menuOptionsFile" ng-right-click="setSelected(file)" ng-model="file">
+						<h3 ng-hide="file.editing" ng-dblclick="editName(file)">{{file.name}}</h3>
+	        			<input type="text" class="form-control input-sm" ng-show="file.editing" ng-model="file.name" ng-blur="doneEditing(file)" maxlength="20" auto-focus/>
+				</div>
+			</div>
+		</div>
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assets/js/controllers.js"></script>
+		<script type="text/javascript" src="assets/js/directives.js"></script>
+		<script type="text/javascript" src="assets/js/services.js"></script>
+		<script type="text/javascript" src="assets/js/models.js"></script>
+		<script type="text/javascript" src="assets/js/utilis.js"></script>
+		<script type="text/javascript" src="assets/js/app.js"></script>
+	</body>
+</html>
